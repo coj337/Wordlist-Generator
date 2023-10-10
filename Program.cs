@@ -5,24 +5,15 @@ internal class Program
     static void Main(string[] args)
     {
         var allWords = new List<string>();
-        var baseWords = new List<string>()
-        {
-            "Password", "Welcome", "Covid", // Dumb Passwords
-            "Winter", "Autumn", "Fall", "Summer", "Spring", // Seasons
-            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", // Months
-            //"Master", "Dragon", "Monkey", "Shadow", "Qwerty", "Iloveyou", "Thankyou", "Baseball", "Football", "Letmein", // Common Words
-            //"Mustang", "Access", "Superman", "Batman", "Qwertyuiop", "Jesus", "Ninja", "God", // More common words
-            "Richmond", "Collingwood", "Essendon", "Carlton", "Geelong", "Swans", "Lions", "Saints", // AFL Teams
-            "Dockers", "Bulldogs", "Eagles", "Hawthorn", "Hawks", "Kangaroos", "Giants", "Suns", // AFL Teams
-            "Melbourne", "Sydney", "Perth", "Adelaide", "Brisbane", "Fremantle" // Cities
-        };
+        var baseWords = File.ReadAllLines("base_words.txt");
 
         foreach(var word in baseWords)
         {
-            // Add a word for the last 3 years
+            // Add a word for last, this and next year
             var year = DateTime.Now.Year;
             allWords.Add(word + (year-1));
             allWords.Add(word + year);
+            allWords.Add(word + (year+1));
             allWords.Add(word + year + "!");
             allWords.Add(word + "@" + year);
             allWords.Add(word + "_" + year);
